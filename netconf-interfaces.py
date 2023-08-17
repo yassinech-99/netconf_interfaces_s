@@ -59,7 +59,7 @@ class InterfacesInfo(Device):
                 interfaces=handler.get(self.filter)
                 return parseString(interfaces).toprettyxml()
             else:
-                return ""
+                return ''
         except Exception as e:
             print("Error:", e)
             return ""
@@ -106,15 +106,15 @@ if __name__ == "__main__":
     parser.add_argument('-u','--username',help="enter username", required=True)
     parser.add_argument('-p','--password',help="enter password", required=True)
     parser.add_argument('-i', '--interface', help="Displays the interface based on xml file provided eg: -i interface.xml ",required=False)
-    parser.add_argument('-I','--Interfaces',help='Displays the all the interfaces eg: -I interfaces')
+    parser.add_argument('-I','--interfaces',help='Displays the all the interfaces eg: -I interfaces',action='store_true')
     parser.add_argument('-s', '--set', help="Set Interface based on an xml config file provided eg: -s interface_config.xml", required=False)
     args= parser.parse_args()
 
     try:
         call = InterfacesInfo(args.device,args.username,args.password)
         
-        if args.Interfaces:
-            interfaces=call.get_interface()
+        if args.interfaces:
+            interfaces=call.get_interfaces()
             for interface_name, interface_data in interfaces.items():
                 print(f"Interface: {interface_name}")
                 print(f"Description: {interface_data['description']}")
