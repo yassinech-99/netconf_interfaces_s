@@ -47,11 +47,8 @@ class InterfacesInfo(Device):
                                 <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"/>
                                 
                         </filter>
-                        """
+                    """
         
-    
-        
-
     def get_interfaces(self):
         """
         Get All Interfaces in xml format 
