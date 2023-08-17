@@ -14,7 +14,6 @@ python -i netconf-interfaces.py -d DEVICE -u USERNAME -p PASSWORD [-i INTERFACE]
 -u, --username: Device username.
 -p, --password: Device password.
 -i, --interface: Display details of a specific interface based on an XML file.
--I, --Interfaces: Display all interfaces.
+-I, --interfaces: Display all interfaces.
 -s, --set: Set interface based on an XML config file.
--v, --verbose: Increase output verbosity.
 
