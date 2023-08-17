@@ -1,6 +1,7 @@
 # netconf_interfaces_s
 a script to query an IOS XE Router All Interfaces, Set or Get Interface via XML config files
 
+´´´bash
 usage: Fetch Display and Configure InterFaces [-h] -d DEVICE -u USERNAME -p PASSWORD [-i INTERFACE] [-I INTERFACES] [-s SET] 
 
 optional arguments:
