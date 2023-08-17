@@ -16,6 +16,9 @@ class Device(object):
             'username': Username,
             'password': Password,
             }
+    def router_parms(self):
+        return self.router
+
         
     def get_manager(self):
 
@@ -73,8 +76,8 @@ class InterfacesInfo(Device):
             with open('interface_filter.xml','r') as  interface_filter:
                 handler = super().get_manager()
                 if handler:
-                    interface_data=handler.get(interface_filter.read())
-                    return parseString(interface_data).toprettyxml()
+                    interface=handler.get(interface_filter.read())
+                    return parseString(interface).toprettyxml()
                 else:
                     return ""
         except Exception as e:
@@ -102,18 +105,18 @@ class InterfacesInfo(Device):
 
 if __name__ == "__main__":
     parser= argparse.ArgumentParser('Fetch Display and Configure InterFaces')
-    parser.add_argument('-h','--host',help="enter host eg: -h sandbox-iosxe-latest-1.cisco.com ", required=True)
+    parser.add_argument('-d','--device',help="enter host eg: -d sandbox-iosxe-latest-1.cisco.com ", required=True)
     parser.add_argument('-u','--username',help="enter username", required=True)
     parser.add_argument('-p','--password',help="enter password", required=True)
     parser.add_argument('-i', '--interface', help="Displays the interface based on xml file provided eg: -i interface.xml ",required=False)
     parser.add_argument('-I','--Interfaces',help='Displays the all the interfaces eg: -I interfaces')
     parser.add_argument('-s', '--set', help="Set Interface based on an xml config file provided eg: -s interface_config.xml", required=False)
-    parser.add_argument('-v', '--verbose','increase verbosity', action='store_true')
     args= parser.parse_args()
 
     try:
-        call = InterfacesInfo(args.host,args.username,args.password)
-        if args.interfaces:
+        call = InterfacesInfo(args.device,args.username,args.password)
+        
+        if args.Interfaces:
             interfaces=call.get_interface()
             for interface_name, interface_data in interfaces.items():
                 print(f"Interface: {interface_name}")
